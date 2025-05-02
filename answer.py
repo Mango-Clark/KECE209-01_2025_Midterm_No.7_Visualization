@@ -7,6 +7,7 @@ from fractions import Fraction
 
 # -- Union-Find for merging nodes (shorted case) --
 class UnionFind:
+
     def __init__(self, elements):
         self.parent = {e: e for e in elements}
 

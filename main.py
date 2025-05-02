@@ -7,6 +7,7 @@ from collections import Counter
 
 # union-find(Disjoint Set) 구현
 class UnionFind:
+
     def __init__(self, elements):
         self.parent = {e: e for e in elements}
 
@@ -27,7 +28,7 @@ edges = list(G.edges())
 pos = {"A": (0, 0), "B": (2, 0), "C": (1, 3**-0.5), "D": (1, 3**0.5)}
 
 # 출력 폴더 생성
-os.makedirs("./Img", exist_ok=True)
+os.makedirs("./Img_main", exist_ok=True)
 
 # n = 0,1,2 에 대해 모든 중복 순열 반복
 for n in range(3):
@@ -36,12 +37,11 @@ for n in range(3):
         edge_names = ", ".join(f"{x}{y}" for x, y in chosen) or "None"
         safe_names = edge_names.replace(", ", "-")
         fname = f"n={n}_{safe_names}.png"
-        path = os.path.join("Img", fname)
+        path = os.path.join("Img_main", fname)
 
         # Original 엣지 색 (shorted 엣지는 파란색)
         colors_orig = [
-            "blue" if (e in chosen or (e[1], e[0]) in chosen) else "black"
-            for e in G.edges()
+            "blue" if (e in chosen or (e[1], e[0]) in chosen) else "black" for e in G.edges()
         ]
 
         # union-find로 병합 집합 구성
@@ -102,12 +102,8 @@ for n in range(3):
 
         # — Opened network (shorted 엣지 제거) —
         # 남길 엣지만 선택
-        opened_edges = [
-            e for e in G.edges() if not ((e in chosen) or ((e[1], e[0]) in chosen))
-        ]
-        nx.draw_networkx_edges(
-            G, pos, edgelist=opened_edges, ax=ax2, edge_color="black", width=3
-        )
+        opened_edges = [e for e in G.edges() if not ((e in chosen) or ((e[1], e[0]) in chosen))]
+        nx.draw_networkx_edges(G, pos, edgelist=opened_edges, ax=ax2, edge_color="black", width=3)
         nx.draw_networkx_nodes(
             G,
             pos,

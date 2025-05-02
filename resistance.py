@@ -8,6 +8,7 @@ import numpy as np
 
 # union-find(Disjoint Set) implementation
 class UnionFind:
+
     def __init__(self, elements):
         self.parent = {e: e for e in elements}
 
@@ -39,7 +40,6 @@ pos = {"A": (0, 0), "B": (2, 0), "C": (1, 3**-0.5), "D": (1, 3**0.5)}
 # Ensure output folder exists
 os.makedirs("./Img_resistor", exist_ok=True)
 
-
 # compute R_original
 R_original = effective_resistance(G, "A", "B")
 
@@ -54,8 +54,7 @@ for n in range(3):
 
         # color original edges
         colors_orig = [
-            "blue" if (e in chosen or (e[::-1] in chosen)) else "black"
-            for e in G.edges()
+            "blue" if (e in chosen or (e[::-1] in chosen)) else "black" for e in G.edges()
         ]
 
         # build union-find sets
@@ -106,9 +105,7 @@ for n in range(3):
         # compute R_merge
         mergedA = name_map[uf.find("A")]
         mergedB = name_map[uf.find("B")]
-        R_short = (
-            0.0 if mergedA == mergedB else effective_resistance(H_res, mergedA, mergedB)
-        )
+        R_short = (0.0 if mergedA == mergedB else effective_resistance(H_res, mergedA, mergedB))
 
         # layout for merged
         posH = {}
@@ -146,9 +143,7 @@ for n in range(3):
         )
 
         # Opened
-        nx.draw_networkx_edges(
-            G, pos, edgelist=opened_edges, ax=ax2, edge_color="black", width=3
-        )
+        nx.draw_networkx_edges(G, pos, edgelist=opened_edges, ax=ax2, edge_color="black", width=3)
         nx.draw_networkx_nodes(
             G,
             pos,
@@ -184,9 +179,7 @@ for n in range(3):
                     width=3,
                     connectionstyle=f"arc3,rad={rad}",
                 )
-        faceH = [
-            "white" if ("A" in n or "B" in n) else "lightgreen" for n in H_multi.nodes()
-        ]
+        faceH = ["white" if ("A" in n or "B" in n) else "lightgreen" for n in H_multi.nodes()]
         edgeH = ["red" if ("A" in n or "B" in n) else "black" for n in H_multi.nodes()]
         nx.draw_networkx_nodes(
             H_multi,
