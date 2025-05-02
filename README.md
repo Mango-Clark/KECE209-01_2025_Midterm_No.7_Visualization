@@ -4,7 +4,11 @@
 
 ## 문제 소개
 
-![Problem 7](./Problem 7.png)
+![Problem 7](https://github.com/Mango-Clark/KECE209-01_2025_Midterm_No.7_Visualization/blob/main/Problem%207.png)
+
+* 답
+
+![Answer](https://github.com/Mango-Clark/KECE209-01_2025_Midterm_No.7_Visualization/blob/main/answer.png)
 
 업로드 허락 받음
 
